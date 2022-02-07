@@ -1,2 +1,2 @@
 #!/bin/bash
-no me se el comando
+find . -name *.js -type f -delete
