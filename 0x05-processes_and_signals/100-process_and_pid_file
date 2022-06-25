@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
-#This script that displays catch diferent bash signals and displays a messegge with it
-echo $$ > /var/run/holbertonscript.pid
-trap 'echo "I hate the kill command"; rm -rf /var/run/holbertonscript.pid; exit' SIGTERM
-trap 'echo "Y U no love me?!"' SIGINT
-trap 'rm -rf /var/run/holbertonscript.pid; exit' SIGQUIT
-
-while :
-do
+# script that writes its PID to file and responds to signals
+file=/var/run/myscript.pid
+trap 'echo Y U no love me?!' SIGINT
+trap 'rm $file; exit' SIGQUIT
+trap 'echo I hate the kill command; rm $file; exit' SIGTERM
+echo $$ > "$file"
+while true; do
 	echo "To infinity and beyond"
 	sleep 2
 done
